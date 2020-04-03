@@ -65,4 +65,22 @@ export class CalendarService {
     };
     return this.eventDoc.set(this.calendarEvents);
   }
+
+  deleteEvent(eventId, userEvents, id?: any) {
+    this.eventDoc = this.eventCollection.doc<Events>(`${id}`);
+    const arr = userEvents.events.filter(event => event.eventId !== Number(eventId));
+    const calendarEvents = {
+      events: arr
+    };
+    this.deleteAllEvents(id);
+    return this.eventDoc.set(calendarEvents);
+  }
+
+  deleteAllEvents(id) {
+    this.eventDoc = this.eventCollection.doc<Events>(`${id}`);
+    const userEvents = {
+      events: []
+    };
+    return this.eventDoc.set(userEvents);
+  }
 }

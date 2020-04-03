@@ -41,7 +41,7 @@ export class ViewEventPage implements OnInit, OnDestroy {
 
   getEvent(id, eventId) {
     this.calendarService.userCalendarEvents(id)
-    //.pipe(takeWhile(() => !this.destroySubscriptions))
+    .pipe(takeWhile(() => !this.destroySubscriptions))
     .subscribe((data: any) => {
       this.userEvents = data;
       this.events = data.events.find((value) => value.eventId === Number(eventId));
@@ -52,4 +52,30 @@ export class ViewEventPage implements OnInit, OnDestroy {
       }
     });
   }
+
+  deleteEvent(event) {
+    this.presentAlert(event);
+  }
+
+  async presentAlert(event) {
+    const alert = await this.alertCtrl.create({
+      message: 'Usuń to wydarzenie?',
+      buttons: [
+        {
+          text: "Anuluj",
+          role: 'cancel',
+          handler: () => {}
+        },
+        {
+          text: 'OK',
+          handler: () => {
+            this.calendarService.deleteEvent(event.eventId, this.userEvents, this.id);
+            this.router.navigate(['/calendar']);
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
 }

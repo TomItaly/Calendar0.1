@@ -12,6 +12,9 @@ const routes: Routes = [
   {
     path: 'view-event/:id', loadChildren: () => import('src/app/pages/view-event/view-event.module').then( m => m.ViewEventPageModule)
   },
+  { 
+    path: 'add-event-modal', loadChildren: () => import('src/app/pages/add-event-modal/add-event-modal.module').then(m => m.AddEventModalPageModule)
+  }
 ];
 
 @NgModule({

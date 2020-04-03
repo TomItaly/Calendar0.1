@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>View Event</ion-title>
+    <ion-title>Wydarzenie - szczegóły</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -45,7 +45,7 @@
         <ion-icon name="notifications"></ion-icon>
         <ion-label class="time__label">
           Przypomnienie
-          <p class="p1">{{events.remind}} minutes before</p>
+          <p class="p1">{{events.remind}} minut przed</p>
         </ion-label>
       </ion-item>
     </ion-list>
@@ -61,7 +61,7 @@
 <ion-footer no-border>
   <ion-toolbar class="footer__toolbar">
     <ion-tab-bar>
-      <ion-tab-button>
+      <ion-tab-button (click)="deleteEvent(events)">
         <ion-label>Usuń</ion-label>
         <ion-icon name="trash"></ion-icon>
       </ion-tab-button>

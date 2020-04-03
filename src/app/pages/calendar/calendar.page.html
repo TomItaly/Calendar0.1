@@ -85,12 +85,18 @@
         </ion-label>
       </ion-item>
       <ion-item-options side="end">
-        <ion-item-option>
-          Delete
+        <ion-item-option (click)="deleteCalendarEvent(event)">
+          Usuń
         </ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
+
+  <ion-item lines="none" text-center *ngIf="eventSource.length === 0">
+    <p class="no__event__today"> 
+      Dziś nie ma wydarzeń
+    </p>
+  </ion-item>
 
 </ion-content>
 
@@ -116,7 +122,8 @@
         <ion-label>Dzień</ion-label>
         <ion-icon name="list"></ion-icon>
       </ion-tab-button>
-      <ion-tab-button>
+
+      <ion-tab-button (click)="schedulePage()">
         <ion-label>Plan</ion-label>
         <ion-icon name="apps"></ion-icon>
       </ion-tab-button>
